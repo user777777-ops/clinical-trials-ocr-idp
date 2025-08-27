@@ -54,7 +54,7 @@ For our final product this might not even be useful because a lot of the documen
 
 [Task 1: PDF Extraction](./task1_PDFextraction.ipynb)
 
-That being said, if one had to be chosen, I would go with PyMuPDF for its undeniable superiority. It is quicker and the text extracted is more accurate.  
+That being said, if one had to be chosen, We would go with PyMuPDF for its undeniable superiority. It is quicker and the text extracted is more accurate.  
 
 
 
@@ -62,16 +62,16 @@ That being said, if one had to be chosen, I would go with PyMuPDF for its undeni
 
 [Task 1B: PDF to Image](./task1b_PDFtoImage.ipynb)
 
-The best way to turn a PDF into an image is not as easily found. The quickest way for it is the library pdfium2, however, I think PyMuPDF is an option worth considering because it can easily denoise the image and make it black and white. These two extra features and the fact that it is the best text retriever make it, according to me, the best option. 
+The best way to turn a PDF into an image is not as easily found. The quickest way for it is the library pdfium2, however, PyMuPDF is an option worth considering because it can easily denoise the image and make it black and white. These two extra features and the fact that it is the best text retriever make it the best option. 
 
 [Task 1C: OCR on the Image](./task1c_OCRonImage.ipynb)
 
 
-After carefully reviewing, all the open source models can simply be forgotten. Those who perform well like EasyOCR are extremely slow, at least running on my machine. Getting a working product would be impossible. EasyOCR used with a good GPU would be good, but still it has trouble detecting double lined cells in tables. 
+After carefully reviewing, all the open source models can simply be forgotten. Those who perform well like EasyOCR can get very slow running on a common laptop. Getting a working product would be very demanding. EasyOCR used with a good GPU would be good, but still it has trouble detecting double lined cells in tables. 
 
 [Task 1C: Paid OCR Services](./task1c_PaidOCR.ipynb)
 
-In terms of paid OCR, the best options I have found are Google Gemini 2.5 from Google Vertex AI and Meta Llama 4 Maverick. Maverick doesn't have coordinates but is by far the best at properly detecting layout. As a consequence, I used Google Cloud and its models for the working prototype I developed.
+In terms of paid OCR, the best options I have found are Google Gemini 2.5 from Google Vertex AI and Meta Llama 4 Maverick. Maverick doesn't have coordinates but is the best at properly detecting layout. As a consequence, I used Google Cloud and its models for the working prototype I developed.
 
 # Task 2: Embedding for a similarity search using AI
 
@@ -95,7 +95,7 @@ A simple browse through the titles is enough to get what we are looking for. Tre
 
 ## Conclusion: 
 
-I have created a model that can find the answers with a given questionnaire. I needed 3 different API calls. The process can still be optimized and the search algorithm still needs to be written. However, the results are still very promising. We have seen that the optimal solutions are the ones offered by the main tech corporations for their price and capabilities. In addition, in the case of my prototype, the entire process can be done using Google Cloud's API, which could simplify the process due to the centralized cloud-based approach. The downside of this is the weaker data protection that these companies are known for. With enough growth, running these models on our own hardware would be the right choice given the confidentiality needed for medical data. Here is what I am referring to: [Major Data Leaks](https://tech.co/news/data-breaches-updated-list). Among the different cloud providers needed to develop this product, I have made the following [Price Comparison](./Price_Comparison/OCR_price_comparison.ods). It can be opened in the LibreOffice suite. It shows that for similar results, Google Cloud and AWS provide the best services to perform OCR and call LLM/Embedding models.  
+I have created a model that can find the answers with a given questionnaire. I needed 3 different API calls. The process can still be optimized and the search algorithm still needs to be written. However, the results are still very promising. We have seen that the optimal solutions are the ones offered by the main tech corporations for their price and capabilities. In addition, in the case of my prototype, the entire process can be done using Google Cloud's API, which could simplify the process due to the centralized cloud-based approach. The downside of this is the weaker data protection that these companies have been at times known for. With enough growth, running these models on our own hardware would be the right choice given the confidentiality needed for medical data. Here is what I am referring to: [Major Data Leaks](https://tech.co/news/data-breaches-updated-list). Among the different cloud providers needed to develop this product, I have made the following [Price Comparison](./Price_Comparison/OCR_price_comparison.ods). It can be opened in the LibreOffice suite. It shows that for similar results, Google Cloud and AWS provide the best services to perform OCR and call LLM/Embedding models.  
 
 [Prototype 1](./Prototype1/Prototype1.ipynb)
 
