@@ -1,0 +1,73 @@
+                                      Memory usage: ▂▄▆█▇▅▇ (max: 40.187 MB, growth rate:  60%)                                      
+  /RESEARCH/task1scripts/retrievers.py: % of time = 100.00% (12.739s) out of    
+                                                              12.739s.                                                               
+       ╷       ╷       ╷       ╷        ╷       ╷               ╷       ╷                                                            
+       │Time   │–––––– │–––––– │Memory  │–––––– │–––––––––––    │Copy   │                                                            
+  Line │Python │native │system │Python  │peak   │timeline/%     │(MB/s) │//RESEA…  
+╺━━━━━━┿━━━━━━━┿━━━━━━━┿━━━━━━━┿━━━━━━━━┿━━━━━━━┿━━━━━━━━━━━━━━━┿━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
+     1 │       │       │       │        │       │               │       │                                                            
+     2 │       │       │       │        │       │               │       │                                                            
+     3 │       │       │       │        │       │               │       │                                                            
+     4 │       │       │       │        │       │               │       │                                                            
+     5 │       │       │       │        │       │               │       │# PDF Processing                                            
+     6 │       │       │       │        │       │               │       │def pdfPlumber():                                           
+     7 │       │    2% │       │        │       │               │     6 │    import pdfplumber                                       
+     8 │       │       │       │        │       │               │       │    all_words = []                                          
+     9 │       │       │       │        │       │               │       │    with pdfplumber.open("highlighted_output.pdf") as pdf:  
+    10 │       │       │       │        │       │               │       │        for page in pdf.pages:                              
+    11 │   16% │    2% │       │ 100%   │   10M │▂▃▄  60%       │    25 │            text = page.extract_text()                      
+    12 │       │       │       │        │       │               │       │            all_words.extend(text.split())                  
+    13 │       │       │       │        │       │               │       │                                                            
+    14 │       │       │       │        │       │               │       │def pypdf2():                                               
+    15 │       │   57% │   6%  │ 100%   │   10M │▂  20%         │       │    from PyPDF2 import PdfReader                            
+    16 │       │       │       │        │       │               │       │    # PDF Processing                                        
+    17 │       │       │       │        │       │               │       │    words3 = []                                             
+    18 │       │       │       │        │       │               │       │    reader = PdfReader("highlighted_output.pdf")            
+    19 │       │       │       │        │       │               │       │    for page in reader.pages:                               
+    20 │    3% │       │       │        │       │               │    17 │        text = page.extract_text()                          
+    21 │       │       │       │        │       │               │       │        words3.extend(text.split())                         
+    22 │       │       │       │        │       │               │       │                                                            
+    23 │       │       │       │        │       │               │       │def pymupdf():                                              
+    24 │    3% │    2% │       │ 100%   │   10M │▂  20%         │     3 │    import pymupdf                                          
+    25 │       │       │       │        │       │               │       │    words4 = [] # initialize an empty list to store words   
+    26 │       │       │       │        │       │               │       │    doc = pymupdf.open("highlighted_output.pdf") # open a   
+    27 │       │       │       │        │       │               │       │    for page in doc: # iterate the document pages           
+    28 │       │       │       │        │       │               │       │        text = page.get_text() # get plain text encoded as  
+    29 │       │       │       │        │       │               │       │        words4.extend(text.split()) # extend the list with  
+    30 │       │       │       │        │       │               │       │                                                            
+    31 │       │       │       │        │       │               │       │def pdfMiner():                                             
+    32 │       │       │       │        │       │               │       │    words5 = []                                             
+    33 │       │       │       │        │       │               │       │    from pdfminer.high_level import extract_text            
+    34 │    5% │       │       │        │       │               │       │    text = extract_text("highlighted_output.pdf")           
+    35 │       │       │       │        │       │               │       │    words5 = text.split()                                   
+    36 │       │       │       │        │       │               │       │                                                            
+    37 │       │       │       │        │       │               │       │                                                            
+    38 │       │       │       │        │       │               │       │def pdftotext():                                            
+    39 │       │       │       │        │       │               │       │    import pdftotext                                        
+    40 │       │       │       │        │       │               │       │    with open("highlighted_output.pdf", "rb") as f:         
+    41 │       │       │       │        │       │               │       │        pdf = pdftotext.PDF(f)                              
+    42 │       │       │       │        │       │               │       │    words2 = []                                             
+    43 │       │       │       │        │       │               │       │    for page in pdf:                                        
+    44 │       │       │       │        │       │               │       │        words2.extend(page.split())                         
+    45 │       │       │       │        │       │               │       │                                                            
+    46 │       │       │       │        │       │               │       │pdfPlumber()                                                
+    47 │       │       │       │        │       │               │       │pypdf2()                                                    
+    48 │       │       │       │        │       │               │       │pymupdf()                                                   
+    49 │       │       │       │        │       │               │       │pdfMiner()                                                  
+    50 │       │       │       │        │       │               │       │pdftotext()                                                 
+       │       │       │       │        │       │               │       │                                                            
+╶──────┼───────┼───────┼───────┼────────┼───────┼───────────────┼───────┼───────────────────────────────────────────────────────────╴
+       │       │       │       │        │       │               │       │function summary for /
+     6 │   16% │    4% │       │ 100%   │   10M │███  60%       │    31 │pdfPlumber                                                  
+    14 │    4% │   61% │   2%  │ 100%   │   10M │███  20%       │    17 │pypdf2                                                      
+    23 │    3% │    3% │       │ 100%   │   10M │█  20%         │     3 │pymupdf                                                     
+    31 │    5% │       │       │        │       │               │       │pdfMiner                                                    
+    38 │       │       │       │        │       │               │       │pdftotext                                                   
+       ╵       ╵       ╵       ╵        ╵       ╵               ╵       ╵                                                            
+Top AVERAGE memory consumption, by line:
+(1)    15:    10 MB                                                                                                                   
+(2)    11:    10 MB                                                                                                                   
+Top PEAK memory consumption, by line:
+(1)    15:    10 MB                                                                                                                   
+(2)    11:    10 MB                                                                                                                   
+(3)    24:    10 MB                                                                                                                   

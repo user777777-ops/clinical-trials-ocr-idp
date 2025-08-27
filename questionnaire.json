@@ -1,0 +1,92 @@
+[
+  {
+    "id": 8101,
+    "questionTitle": "Date of Blood Test",
+    "questionType": "DATE"
+  },
+  {
+    "id": 8102,
+    "questionTitle": "Hemoglobin (Hb) Level",
+    "questionType": "RADIO_BUTTONS",
+    "options": [
+      {"id": 51001, "label": "Normal (12-16 g/dL)"},
+      {"id": 51002, "label": "Low (<12 g/dL)"},
+      {"id": 51003, "label": "High (>16 g/dL)"}
+    ]
+  },
+  {
+    "id": 8103,
+    "questionTitle": "White Blood Cell (WBC) Count",
+    "questionType": "RADIO_BUTTONS",
+    "options": [
+      {"id": 51004, "label": "Normal (4,000-11,000/µL)"},
+      {"id": 51005, "label": "Low (<4,000/µL)"},
+      {"id": 51006, "label": "High (>11,000/µL)"}
+    ]
+  },
+  {
+    "id": 8104,
+    "questionTitle": "Platelet Count",
+    "questionType": "RADIO_BUTTONS",
+    "options": [
+      {"id": 51007, "label": "Normal (150,000-450,000/µL)"},
+      {"id": 51008, "label": "Low (<150,000/µL)"},
+      {"id": 51009, "label": "High (>450,000/µL)"}
+    ]
+  },
+  {
+    "id": 8105,
+    "questionTitle": "Blood Gose Level",
+    "questionType": "RADIO_BUTTONS",
+    "options": [
+      {"id": 51010, "label": "Normal (70-99 mg/dL fasting)"},
+      {"id": 51011, "label": "Prediabetes (100-125 mg/dL)"},
+      {"id": 51012, "label": "Diabetes (≥126 mg/dL)"}
+    ]
+  },
+  {
+    "id": 8106,
+    "questionTitle": "Cholesterol Levels",
+    "questionType": "RADIO_BUTTONS",
+    "options": [
+      {"id": 51013, "label": "Normal (<200 mg/dL)"},
+      {"id": 51014, "label": "Borderline High (200-239 mg/dL)"},
+      {"id": 51015, "label": "High (≥240 mg/dL)"}
+    ]
+  },
+  {
+    "id": 8107,
+    "questionTitle": "Liver Function (ALT/AST)",
+    "questionType": "RADIO_BUTTONS",
+    "options": [
+      {"id": 51016, "label": "Normal (ALT: 7-55 U/L, AST: 8-48 U/L)"},
+      {"id": 51017, "label": "Elevated"},
+      {"id": 51018, "label": "Abnormally High (>3x upper limit)"}
+    ]
+  },
+  {
+    "id": 8108,
+    "questionTitle": "Kidney Function (Creatinine)",
+    "questionType": "RADIO_BUTTONS",
+    "options": [
+      {"id": 51019, "label": "Normal (0.7-1.3 mg/dL)"},
+      {"id": 51020, "label": "Elevated"},
+      {"id": 51021, "label": "Critical (>2.0 mg/dL)"}
+    ]
+  },
+  {
+    "id": 8109,
+    "questionTitle": "Iron Status",
+    "questionType": "RADIO_BUTTONS",
+    "options": [
+      {"id": 51022, "label": "Normal"},
+      {"id": 51023, "label": "Iron Deficiency"},
+      {"id": 51024, "label": "Iron Overload"}
+    ]
+  },
+  {
+    "id": 8110,
+    "questionTitle": "Additional Notes",
+    "questionType": "String"
+  }
+]

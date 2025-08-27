@@ -1,0 +1,83 @@
+                             Memory usage: ▂▃▃▁▁▁▁▂▂▂▂▂▃▂▂▂▂▂▂▂▂▂▂█▇██ (max: 490.646 MB, growth rate:  13%)                              
+  //RESEARCH/task1b_images/pdfToImageReport.py: % of time = 100.00% (19.826s) out of   
+                                                                19.826s.                                                                 
+       ╷       ╷       ╷       ╷        ╷       ╷               ╷       ╷                                                                
+       │Time   │–––––– │–––––– │Memory  │–––––– │–––––––––––    │Copy   │                                                                
+  Line │Python │native │system │Python  │peak   │timeline/%     │(MB/s) │//RESEARCH/…  
+╺━━━━━━┿━━━━━━━┿━━━━━━━┿━━━━━━━┿━━━━━━━━┿━━━━━━━┿━━━━━━━━━━━━━━━┿━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
+     1 │       │       │       │        │       │               │       │import os                                                       
+     2 │       │       │       │        │       │               │       │                                                                
+     3 │       │       │       │        │       │               │       │def pdf2image():                                                
+     4 │       │       │       │        │       │               │       │    from pdf2image import convert_from_path                     
+     5 │       │       │       │        │       │               │       │    filePath = '../highlighted_output.pdf'  # Adjusted for rel  
+     6 │    1% │    1% │   4%  │ 100%   │  375M │▁▁▁▁▁▁▁▁▁  14% │    13 │    images = convert_from_path(filePath, dpi=300)               
+     7 │       │       │       │        │       │               │       │    for i, image in enumerate(images):                          
+     8 │    3% │    5% │       │  31%   │   33M │▁▁▁▁▁▁▁▁▁   6% │    28 │        image.save(f'pdf2image_page_{i + 1}.png', 'PNG')        
+     9 │       │       │       │        │       │               │       │                                                                
+    10 │       │       │       │        │       │               │       │def pymupdf():                                                  
+    11 │    3% │    4% │       │  99%   │   10M │▁              │    13 │    import fitz  # PyMuPDF                                      
+    12 │       │       │       │        │       │               │       │    from PIL import Image                                       
+    13 │       │       │       │        │       │               │       │                                                                
+    14 │       │       │       │        │       │               │       │    filePath = '../highlighted_output.pdf'                      
+    15 │       │       │       │        │       │               │       │    doc = fitz.open(filePath)                                   
+    16 │       │       │       │        │       │               │       │    zoom = 300 / 72  # Scale factor for 300 DPI                 
+    17 │       │       │       │        │       │               │       │    matrix = fitz.Matrix(zoom, zoom)                            
+    18 │       │       │       │        │       │               │       │                                                                
+    19 │       │       │       │        │       │               │       │    for i in range(len(doc)):                                   
+    20 │       │       │       │        │       │               │       │        page = doc.load_page(i)                                 
+    21 │       │    1% │       │  12%   │   63M │▁▁▁▁▁▁▁▁▁  11% │       │        pix = page.get_pixmap(matrix=matrix)                    
+    22 │       │       │       │        │       │               │       │        output_path = f'PyMuPDF_page_{i + 1}.png'               
+    23 │       │    4% │       │        │   50M │▁▁▁▁▁▁▁▁▁   9% │    18 │        pix.save(output_path)                                   
+    24 │       │       │       │        │       │               │       │        with Image.open(output_path) as im:                     
+    25 │    3% │    5% │       │   3%   │   65M │▁▁▁▁▁▁▁▁▁  12% │    23 │            im.save(output_path, dpi=(300, 300))                
+    26 │       │       │       │        │       │               │       │                                                                
+    27 │       │       │       │        │       │               │       │def pdfium():                                                   
+    28 │       │    1% │       │        │       │               │       │    import pypdfium2 as pdfium                                  
+    29 │       │       │       │        │       │               │       │    pdf = pdfium.PdfDocument("../highlighted_output.pdf")       
+    30 │       │       │       │        │       │               │       │    for i in range(len(pdf)):                                   
+    31 │       │    1% │       │        │       │               │       │        page = pdf[i]                                           
+    32 │       │       │       │  42%   │   61M │▁▁▁▁▁▁▁▁▁  10% │     4 │        image = page.render(scale=4).to_pil()                   
+    33 │    3% │    5% │       │        │       │               │    13 │        image.save(f"pdfium_image_{i + 1:03d}.png", format="PN  
+    34 │       │       │       │        │       │               │       │                                                                
+    35 │       │       │       │        │       │               │       │def wand():                                                     
+    36 │       │       │   1%  │        │       │               │       │    from wand.image import Image                                
+    37 │       │       │       │        │       │               │       │    from wand.color import Color                                
+    38 │       │       │       │        │       │               │       │    pdf_path = '../highlighted_output.pdf'                      
+    39 │       │       │       │        │       │               │       │    output_prefix = "wand_image"                                
+    40 │       │       │       │        │       │               │       │    resolution = 300                                            
+    41 │       │       │       │        │       │               │       │                                                                
+    42 │       │    1% │   2%  │  10%   │  334M │▁▁▁▁▁  12%     │    25 │    with Image(filename=pdf_path, resolution=resolution) as pd  
+    43 │       │       │       │        │       │               │       │        for i, page in enumerate(pdf.sequence):                 
+    44 │       │       │       │        │       │               │       │            with Image(page) as img:                            
+    45 │       │       │       │        │       │               │       │                img.background_color = Color("white")           
+    46 │       │    5% │       │        │   66M │▁▁▁▁▁  12%     │    13 │                img.alpha_channel = 'remove'                    
+    47 │       │       │       │        │       │               │       │                img.format = 'png'                              
+    48 │       │       │       │        │       │               │       │                img.compression_quality = 95                    
+    49 │       │   41% │       │        │   66M │▁▁▁▁▁▁▁▁▁  12% │    73 │                img.save(filename=f"{output_prefix}-{i + 1}.pn  
+    50 │       │       │       │        │       │               │       │                                                                
+    51 │       │       │       │        │       │               │       │# Run all conversions                                           
+    52 │       │       │       │        │       │               │       │pdf2image()                                                     
+    53 │       │       │       │        │       │               │       │pymupdf()                                                       
+    54 │       │       │       │        │       │               │       │pdfium()                                                        
+    55 │       │       │       │        │       │               │       │wand()                                                          
+    56 │       │       │       │        │       │               │       │# The above code converts a PDF file into images using four di  
+       │       │       │       │        │       │               │       │                                                                
+╶──────┼───────┼───────┼───────┼────────┼───────┼───────────────┼───────┼───────────────────────────────────────────────────────────────╴
+       │       │       │       │        │       │               │       │function summary for /home//Documents/PersoProjects/AIre…  
+     3 │    4% │    5% │   5%  │  79%   │  375M │█████████  20% │    41 │pdf2image                                                       
+    10 │    7% │   15% │   1%  │   6%   │   65M │█████████  33% │    54 │pymupdf                                                         
+    27 │    4% │    8% │       │  42%   │   61M │█████████  10% │    16 │pdfium                                                          
+    35 │       │   24% │  27%  │   4%   │  334M │█████████  37% │   111 │wand                                                            
+       ╵       ╵       ╵       ╵        ╵       ╵               ╵       ╵                                                                
+Top AVERAGE memory consumption, by line:
+(1)     6:   375 MB                                                                                                                       
+(2)    42:   334 MB                                                                                                                       
+(3)    46:    66 MB                                                                                                                       
+(4)    49:    66 MB                                                                                                                       
+(5)    25:    65 MB                                                                                                                       
+Top PEAK memory consumption, by line:
+(1)     6:   375 MB                                                                                                                       
+(2)    42:   334 MB                                                                                                                       
+(3)    46:    66 MB                                                                                                                       
+(4)    49:    66 MB                                                                                                                       
+(5)    25:    65 MB                                                                                                                       

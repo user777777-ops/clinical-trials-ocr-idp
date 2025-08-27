@@ -1,0 +1,8 @@
+.venv/
+.env
+*.pdf
+*.jpg
+*.jpeg
+*.png
+models/
+
